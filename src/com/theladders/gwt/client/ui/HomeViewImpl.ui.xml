@@ -7,13 +7,19 @@
         }
     </ui:style>
 
-    <g:DockLayoutPanel unit="EM">
-        <g:north size="5">
-            <ladders:TopPanelViewImpl ui:field='topPanel' />
-        </g:north>
-        <g:center>
-            <ladders:BrowseJobsViewImpl ui:field='browseJobs' />
-        </g:center>
-    </g:DockLayoutPanel>
+    <g:HTMLPanel>
+        <table>
+            <tr>
+                <td valign='top'>
+                    <ladders:TopPanelViewImpl ui:field='topPanel' />
+                </td>
+            </tr>
+            <tr>
+                <td align='center'>
+                    <ladders:BrowseJobsViewImpl ui:field='browseJobs' />
+                </td>
+            </tr>
+        </table>
 
+    </g:HTMLPanel>
 </ui:UiBinder>

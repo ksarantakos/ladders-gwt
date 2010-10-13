@@ -6,7 +6,7 @@
         .cellTable {
         	height: 400px;
         	width: 600px;
-        	border: 1px solid #ccc;
+        	border: 2px solid #ccc;
         	text-align: left;
         }
     </ui:style>

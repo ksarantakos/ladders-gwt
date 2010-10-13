@@ -9,7 +9,6 @@ import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.Constants;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -49,7 +48,7 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
 
   public BrowseJobsViewImpl() {
     // Create a CellTable.
-    cellTable = new CellTable<ContactInfo>();
+    cellTable = new CellTable<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
 
     // Create a Pager to control the table.
     SimplePager.Resources pagerResources = GWT.create(SimplePager.Resources.class);
@@ -57,17 +56,11 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
     pager.setDisplay(cellTable);
 
     // Add a selection model so we can select cells.
-    final MultiSelectionModel<ContactInfo> selectionModel = new MultiSelectionModel<ContactInfo>();
+    final MultiSelectionModel<ContactInfo> selectionModel = new MultiSelectionModel<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
     cellTable.setSelectionModel(selectionModel);
 
     // Initialize the columns.
     initTableColumns(selectionModel);
-
-    // Set a key provider that provides a unique key for each contact. If key is
-    // used to identify contacts when fields (such as the name and address)
-    // change.
-    // cellTable.setKeyProvider(ContactDatabase.ContactInfo.KEY_PROVIDER);
-    // selectionModel.setKeyProvider(ContactDatabase.ContactInfo.KEY_PROVIDER);
 
     // Add the CellList to the adapter in the database.
     ContactDatabase.get().addDataDisplay(cellTable);
