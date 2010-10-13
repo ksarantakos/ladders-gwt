@@ -1,5 +1,6 @@
 package com.theladders.gwt.client.ui;
 
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 
 /**
@@ -8,6 +9,11 @@ import com.google.gwt.user.client.ui.IsWidget;
  * 
  * @author drfibonacci
  */
-public interface GoodbyeView extends IsWidget {
-  void setName(String helloName);
+public interface HomeView extends IsWidget {
+
+  void setListener(Listener listener);
+
+  public interface Listener {
+    void goTo(Place place);
+  }
 }
