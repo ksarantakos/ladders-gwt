@@ -9,20 +9,10 @@
 
     <g:DockLayoutPanel unit="EM">
         <g:north size="5">
-            <ladders:TopPanelViewImpl ui:field='topPanel'/>
+            <ladders:TopPanelViewImpl ui:field='topPanel' />
         </g:north>
         <g:center>
-            <g:SplitLayoutPanel>
-                <g:west size='192'>
-                    <g:Label>Shortcuts Panel</g:Label>
-                </g:west>
-                <g:north size='200'>
-                    <g:Label>Mail List</g:Label>
-                </g:north>
-                <g:center>
-                    <g:Label>Center</g:Label>
-                </g:center>
-            </g:SplitLayoutPanel>
+            <ladders:BrowseJobsViewImpl ui:field='browseJobs' />
         </g:center>
     </g:DockLayoutPanel>
 

@@ -9,6 +9,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({ HomePlace.Tokenizer.class, GoodbyePlace.Tokenizer.class })
+@WithTokenizers({ HomePlace.Tokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
