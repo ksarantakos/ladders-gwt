@@ -1,38 +1,44 @@
-<ui:UiBinder
-  xmlns:ui='urn:ui:com.google.gwt.uibinder'
-  xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator" ui:generateLocales="default"
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
-  <ui:style>
-  .statusDiv {
-    text-align: right;
-    margin: 1em;
-  }
+    <ui:style>
+        .statusDiv {
+        	text-align: right;
+        	margin: 1em;
+        }
+        
+        .linksDiv {
+        	text-align: right;
+        }
+        
+        .logo {
+        	background: url(logo.gif);
+        	position: absolute;
+        	width: 223px;
+        	height: 44px;
+        }
+    </ui:style>
 
-  .linksDiv {
-    text-align: right;
-  }
+    <g:HTMLPanel>
+        <div class='{style.logo}' />
 
-  .logo {
-    background: url(logo.gif);
-    position: absolute;
-    width: 223px;
-    height: 44px;
-  }
-  </ui:style>
+        <div class="{style.statusDiv}">
+            <div>
+                <b>
+                    <ui:msg description="Login Panel: Welcome Back Text">Welcome back, foo@example.com</ui:msg>
+                </b>
+            </div>
 
-  <g:HTMLPanel>
-    <div class='{style.logo}'/>
-
-    <div class="{style.statusDiv}">
-      <div>
-        <b>Welcome back, foo@example.com</b>
-      </div>
-
-      <div class='{style.linksDiv}'>
-        <g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
-        <g:Anchor href='javascript:;' ui:field='aboutLink'>About</g:Anchor>
-      </div>
-    </div>
-  </g:HTMLPanel>
+            <div class='{style.linksDiv}'>
+                <g:Anchor href='javascript:;' ui:field='signOutLink'>
+                    <ui:msg description="Login Panel: Signout link">Sign Out</ui:msg>
+                </g:Anchor>
+                <g:Anchor href='javascript:;' ui:field='aboutLink'>
+                    <ui:msg description="Login Panel: About Link">About</ui:msg>
+                </g:Anchor>
+            </div>
+        </div>
+    </g:HTMLPanel>
 
 </ui:UiBinder>

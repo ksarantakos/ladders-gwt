@@ -26,17 +26,11 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
 
   @Override
   public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+    // Set Browse Jobs to default Widget
     BrowseJobsView browseJobs = clientFactory.getBrowseJobsView();
     containerWidget.setWidget(browseJobs.asWidget());
+    
     clientFactory.getHomeView().setPresenter(this);
-  }
-
-  /**
-   * Ask user before stopping this activity
-   */
-  @Override
-  public String mayStop() {
-    return "Are you sure you want to leave this page?";
   }
 
   @Override

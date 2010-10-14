@@ -1,6 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui"
-    xmlns:ladders="urn:import:com.theladders.gwt.client.ui">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator" ui:generateLocales="default"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:ladders="urn:import:com.theladders.gwt.client.ui">
+
     <ui:style>
         .important {
         	font-weight: bold;
@@ -15,16 +17,24 @@
             <g:SplitLayoutPanel>
                 <g:west size="128">
                     <g:HTMLPanel>
-                        <h2>Navigation</h2>
+                        <h2>
+                            <ui:msg desciption="Nav Panel: Title">Navigation</ui:msg>
+                        </h2>
                         <ul>
                             <li>
-                                <g:Anchor href='javascript:;' ui:field="welcomePathLink" text="Weclome to TheLadders.com" />
+                                <g:Anchor href='javascript:;' ui:field="welcomePathLink">
+                                    <ui:msg description="Nav Panel: Welcome Path Link">Welcome to TheLadders.com</ui:msg>
+                                </g:Anchor>
                             </li>
                             <li>
-                                <g:Anchor href='javascript:;' ui:field="browseJobsLink" text="Browse Jobs" />
+                                <g:Anchor href='javascript:;' ui:field="browseJobsLink">
+                                    <ui:msg description="Nav Panel: Browse Jobs Link">Browse Jobs</ui:msg>
+                                </g:Anchor>
                             </li>
                             <li>
-                                <g:Anchor href='javascript:;' ui:field="uploadResumeLink" text="Upload Resume" />
+                                <g:Anchor href='javascript:;' ui:field="uploadResumeLink">
+                                    <ui:msg description="Nav Panel: Upload Resume Link">Upload Resume</ui:msg>
+                                </g:Anchor>
                             </li>
                         </ul>
                     </g:HTMLPanel>
@@ -32,7 +42,7 @@
                 </g:west>
                 <g:center>
                     <g:ScrollPanel>
-                        <g:SimplePanel ui:field="contentView"/>
+                        <g:SimplePanel ui:field="contentView" />
                     </g:ScrollPanel>
                 </g:center>
             </g:SplitLayoutPanel>

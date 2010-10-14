@@ -46,6 +46,8 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
   @UiField(provided = true)
   SimplePager pager;
 
+  private Presenter presenter;
+
   public BrowseJobsViewImpl() {
     // Create a CellTable.
     cellTable = new CellTable<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
@@ -160,7 +162,6 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
 
   @Override
   public void setPresenter(Presenter presenter) {
-    // TODO Auto-generated method stub
-    
+    this.presenter = presenter;
   }
 }
