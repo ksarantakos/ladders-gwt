@@ -7,19 +7,39 @@
         }
     </ui:style>
 
-    <g:HTMLPanel>
-        <table>
-            <tr>
-                <td valign='top'>
-                    <ladders:TopPanelViewImpl ui:field='topPanel' />
-                </td>
-            </tr>
-            <tr>
-                <td align='center'>
-                    <ladders:BrowseJobsViewImpl ui:field='browseJobs' />
-                </td>
-            </tr>
-        </table>
+    <g:DockLayoutPanel unit="EM">
+        <g:north size="5">
+            <ladders:TopPanelViewImpl ui:field='topPanel' />
+        </g:north>
+        <g:center>
+            <g:SplitLayoutPanel>
+                <g:west size="128">
+                    <g:HTMLPanel>
+                        <h2>Navigation</h2>
+                        <ul>
+                            <li>
+                                <g:Anchor href='javascript:;' ui:field="welcomePathLink" text="Weclome to TheLadders.com" />
+                            </li>
+                            <li>
+                                <g:Anchor href='javascript:;' ui:field="browseJobsLink" text="Browse Jobs" />
+                            </li>
+                            <li>
+                                <g:Anchor href='javascript:;' ui:field="uploadResumeLink" text="Upload Resume" />
+                            </li>
+                        </ul>
+                    </g:HTMLPanel>
 
-    </g:HTMLPanel>
+                </g:west>
+                <g:center>
+                    <g:ScrollPanel>
+                        <g:SimplePanel ui:field="contentView"/>
+                    </g:ScrollPanel>
+                </g:center>
+            </g:SplitLayoutPanel>
+        </g:center>
+        <g:south size="5">
+            <g:Label>Footer</g:Label>
+        </g:south>
+    </g:DockLayoutPanel>
+
 </ui:UiBinder>

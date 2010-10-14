@@ -30,8 +30,8 @@ public class AppActivityMapper implements ActivityMapper {
     // This is begging for GIN
     if (place instanceof HomePlace)
       return new HomeActivity((HomePlace) place, clientFactory);
-//    else if (place instanceof GoodbyePlace)
-//      return new GoodbyeActivity((GoodbyePlace) place, clientFactory);
+    else if (place instanceof WelcomePlace)
+      return new WelcomeActivity(clientFactory);
 
     return null;
   }

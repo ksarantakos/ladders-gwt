@@ -157,4 +157,10 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
       }
     }, "Address");
   }
+
+  @Override
+  public void setPresenter(Presenter presenter) {
+    // TODO Auto-generated method stub
+    
+  }
 }

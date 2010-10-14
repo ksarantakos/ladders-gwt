@@ -5,9 +5,10 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.theladders.gwt.client.ClientFactory;
+import com.theladders.gwt.client.ui.BrowseJobsView;
 import com.theladders.gwt.client.ui.HomeView;
 
-public class HomeActivity extends AbstractActivity implements HomeView.Listener {
+public class HomeActivity extends AbstractActivity implements HomeView.Presenter {
   // Used to obtain views, eventBus, placeController
   // Alternatively, could be injected via GIN
   private ClientFactory clientFactory;
@@ -25,9 +26,9 @@ public class HomeActivity extends AbstractActivity implements HomeView.Listener 
 
   @Override
   public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-    HomeView homeView = clientFactory.getHomeView();
-    homeView.setListener(this);
-    containerWidget.setWidget(homeView.asWidget());
+    BrowseJobsView browseJobs = clientFactory.getBrowseJobsView();
+    containerWidget.setWidget(browseJobs.asWidget());
+    clientFactory.getHomeView().setPresenter(this);
   }
 
   /**
