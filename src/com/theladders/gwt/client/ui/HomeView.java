@@ -20,6 +20,6 @@ public interface HomeView extends IsWidget {
   }
 
   void setContentView(Widget content);
-  
+
   SimplePanel getDisplay();
 }

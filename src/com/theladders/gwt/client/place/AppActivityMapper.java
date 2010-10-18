@@ -29,7 +29,7 @@ public class AppActivityMapper implements ActivityMapper {
   public Activity getActivity(Place place) {
     // This is begging for GIN
     if (place instanceof HomePlace)
-      return new HomeActivity((HomePlace) place, clientFactory);
+      return new HomeActivity(clientFactory);
     else if (place instanceof WelcomePlace)
       return new WelcomeActivity(clientFactory);
 

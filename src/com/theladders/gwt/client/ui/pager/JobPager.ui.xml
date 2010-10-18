@@ -1,0 +1,123 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator" ui:generateLocales="default"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:l="urn:import:com.theladders.gwt.client.ui">
+
+    <ui:image field="backImage" src="BackwardArrow.gif" />
+    <ui:image field="forwardImage" src="ForwardArrow.gif" />
+    <ui:style>
+        .headlinePrimary {
+        	color: #6A6D6F;
+        	font-size: 18px;
+        	line-height: 20px;
+        	margin-bottom: 10px;
+        }
+        
+        .paginationCount {
+        	font-size: 11px;
+        	font-weight: normal;
+        }
+        
+        .matchingRecruiter {
+        	float: left;
+        	padding: 8px 0 0 15px;
+        }
+        
+        .paginationRow {
+        	padding-bottom: 6px;
+        }
+        
+        .totalResultsCont {
+        	float: left;
+        	padding-top: 4px;
+        }
+        
+        .paginationWrapperFloat {
+        	float: right;
+        	padding-right: 20px;
+        }
+        
+        .jobsPerPageCont {
+        	float: left;
+        	padding: 4px 15px 0 0;
+        }
+        
+        .generalLabel {
+        	color: #282C33;
+        	font-size: 11px;
+        	line-height: 14px;
+        }
+        
+        .paginationLinksList {
+        	float: left;
+        }
+        
+        .paginationLink {
+        	padding: 0 3px;
+        }
+        
+        .paginationContTop {
+        	float: left;
+        	padding-top: 4px;
+        }
+        
+        .paginationLinks {
+        	display: block;
+        	float: left;
+        	margin-top: 3px;
+        	overflow: hidden;
+        	text-align: left;
+        	text-indent: -3000px;
+        }
+        
+        @sprite .backImage {
+        	gwt-image: "backImage";
+        	width: 13px;
+        	height: 13px;
+        }
+        
+        @sprite .forwardImage {
+        	gwt-image: "forwardImage";
+        	width: 13px;
+        	height: 13px;
+        }
+    </ui:style>
+
+    <ui:with field='res' type='com.theladders.gwt.client.ui.pager.PagerResources' />
+
+    <g:HTMLPanel>
+        <div class="{style.paginationRow}">
+            <div class="{style.totalResultsCont}">
+                <span class="{style.headlinePrimary}">Job Results</span>
+                <span class="{style.paginationCount}" ui:field="totalResults" />     
+            </div>
+            <div class="{style.matchingRecruiter}">
+                View Matching Recruiters
+             </div>
+            <div class="{style.paginationWrapperFloat}">
+                <div class="{style.jobsPerPageCont}">
+                    <span class="{style.generalLabel}">Jobs Per Page</span>
+                    <select id="jobsPerPageSelect">
+                        <option value="10">10</option>
+                        <option value="20" selected="selected">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="{style.paginationContTop}">
+                    <g:Anchor styleName="{style.paginationLinks} {style.backImage}" ui:field="paginationBack"
+                        href='javascript:;' />
+                    <div class="{style.paginationLinksList}">
+                        <a onclick="goToPage(1);" class="{style.paginationLink}" href="javascript:void(0);">1</a>
+                        <a onclick="goToPage(2);" class="{style.paginationLink}" href="javascript:void(0);">2</a>
+                        <a onclick="goToPage(3);" class="{style.paginationLink}" href="javascript:void(0);">3</a>
+                        <a onclick="goToPage(4);" class="{style.paginationLink}" href="javascript:void(0);">4</a>
+                        <a onclick="goToPage(5);" class="{style.paginationLink}" href="javascript:void(0);">5</a>
+                    </div>
+                    <g:Anchor styleName="{style.paginationLinks} {style.forwardImage}" ui:field="paginationForward"
+                        href='javascript:;' />
+                </div>
+            </div>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

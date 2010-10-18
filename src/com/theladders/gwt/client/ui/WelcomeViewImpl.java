@@ -21,6 +21,5 @@ public class WelcomeViewImpl extends Composite implements WelcomeView {
   public void setPresenter(Presenter presenter) {
     this.presenter = presenter;
   }
-  
-  
+
 }

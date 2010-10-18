@@ -23,6 +23,8 @@ import com.google.gwt.view.client.SelectionModel;
 import com.theladders.gwt.client.content.ContactDatabase;
 import com.theladders.gwt.client.content.ContactDatabase.Category;
 import com.theladders.gwt.client.content.ContactDatabase.ContactInfo;
+import com.theladders.gwt.client.ui.pager.JobPager;
+import com.theladders.gwt.client.ui.pager.PagerResources;
 
 public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
   /**
@@ -42,9 +44,8 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
   /**
    * The pager used to change the range of data.
    */
-
   @UiField(provided = true)
-  SimplePager pager;
+  JobPager pager;
 
   private Presenter presenter;
 
@@ -53,12 +54,16 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
     cellTable = new CellTable<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
 
     // Create a Pager to control the table.
-    SimplePager.Resources pagerResources = GWT.create(SimplePager.Resources.class);
-    pager = new SimplePager(TextLocation.CENTER, pagerResources, false, 0, true);
+    SimplePager.Resources pagerResources = GWT.create(PagerResources.class);
+//    pager = new SimplePager(TextLocation.RIGHT, pagerResources, false, 0, false);
+    
+    pager = new JobPager();
+    
     pager.setDisplay(cellTable);
 
     // Add a selection model so we can select cells.
-    final MultiSelectionModel<ContactInfo> selectionModel = new MultiSelectionModel<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
+    final MultiSelectionModel<ContactInfo> selectionModel = new MultiSelectionModel<ContactInfo>(
+        ContactDatabase.ContactInfo.KEY_PROVIDER);
     cellTable.setSelectionModel(selectionModel);
 
     // Initialize the columns.

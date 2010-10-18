@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.Constants;
 import com.google.gwt.user.client.Random;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
@@ -37,8 +35,7 @@ public class ContactDatabase {
     /**
      * The key provider that provides the unique ID of a contact.
      */
-    public static final ProvidesKey<ContactInfo> KEY_PROVIDER = new ProvidesKey<
-        ContactInfo>() {
+    public static final ProvidesKey<ContactInfo> KEY_PROVIDER = new ProvidesKey<ContactInfo>() {
       public Object getKey(ContactInfo item) {
         return item == null ? null : item.getId();
       }
@@ -60,8 +57,7 @@ public class ContactDatabase {
     }
 
     public int compareTo(ContactInfo o) {
-      return (o == null || o.firstName == null) ? -1 : -o.firstName.compareTo(
-          firstName);
+      return (o == null || o.firstName == null) ? -1 : -o.firstName.compareTo(firstName);
     }
 
     @Override
@@ -128,8 +124,9 @@ public class ContactDatabase {
 
     /**
      * Set the contact's address.
-     *
-     * @param address the address
+     * 
+     * @param address
+     *          the address
      */
     public void setAddress(String address) {
       this.address = address;
@@ -137,8 +134,9 @@ public class ContactDatabase {
 
     /**
      * Set the contact's birthday.
-     *
-     * @param birthday the birthday
+     * 
+     * @param birthday
+     *          the birthday
      */
     public void setBirthday(Date birthday) {
       this.birthday = birthday;
@@ -146,8 +144,9 @@ public class ContactDatabase {
 
     /**
      * Set the contact's category.
-     *
-     * @param category the category to set
+     * 
+     * @param category
+     *          the category to set
      */
     public void setCategory(Category category) {
       assert category != null : "category cannot be null";
@@ -156,8 +155,9 @@ public class ContactDatabase {
 
     /**
      * Set the contact's first name.
-     *
-     * @param firstName the firstName to set
+     * 
+     * @param firstName
+     *          the firstName to set
      */
     public void setFirstName(String firstName) {
       this.firstName = firstName;
@@ -165,111 +165,76 @@ public class ContactDatabase {
 
     /**
      * Set the contact's last name.
-     *
-     * @param lastName the lastName to set
+     * 
+     * @param lastName
+     *          the lastName to set
      */
     public void setLastName(String lastName) {
       this.lastName = lastName;
     }
   }
 
-
-  private static final String[] FEMALE_FIRST_NAMES = {
-      "Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria",
-      "Susan", "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty",
-      "Helen", "Sandra", "Donna", "Carol", "Ruth", "Sharon", "Michelle",
-      "Laura", "Sarah", "Kimberly", "Deborah", "Jessica", "Shirley", "Cynthia",
-      "Angela", "Melissa", "Brenda", "Amy", "Anna", "Rebecca", "Virginia",
-      "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Stephanie", "Carolyn",
-      "Christine", "Marie", "Janet", "Catherine", "Frances", "Ann", "Joyce",
-      "Diane", "Alice", "Julie", "Heather", "Teresa", "Doris", "Gloria",
-      "Evelyn", "Jean", "Cheryl", "Mildred", "Katherine", "Joan", "Ashley",
-      "Judith", "Rose", "Janice", "Kelly", "Nicole", "Judy", "Christina",
-      "Kathy", "Theresa", "Beverly", "Denise", "Tammy", "Irene", "Jane", "Lori",
-      "Rachel", "Marilyn", "Andrea", "Kathryn", "Louise", "Sara", "Anne",
-      "Jacqueline", "Wanda", "Bonnie", "Julia", "Ruby", "Lois", "Tina",
-      "Phyllis", "Norma", "Paula", "Diana", "Annie", "Lillian", "Emily",
-      "Robin", "Peggy", "Crystal", "Gladys", "Rita", "Dawn", "Connie",
-      "Florence", "Tracy", "Edna", "Tiffany", "Carmen", "Rosa", "Cindy",
-      "Grace", "Wendy", "Victoria", "Edith", "Kim", "Sherry", "Sylvia",
-      "Josephine", "Thelma", "Shannon", "Sheila", "Ethel", "Ellen", "Elaine",
-      "Marjorie", "Carrie", "Charlotte", "Monica", "Esther", "Pauline", "Emma",
-      "Juanita", "Anita", "Rhonda", "Hazel", "Amber", "Eva", "Debbie", "April",
-      "Leslie", "Clara", "Lucille", "Jamie", "Joanne", "Eleanor", "Valerie",
-      "Danielle", "Megan", "Alicia", "Suzanne", "Michele", "Gail", "Bertha",
-      "Darlene", "Veronica", "Jill", "Erin", "Geraldine", "Lauren", "Cathy",
-      "Joann", "Lorraine", "Lynn", "Sally", "Regina", "Erica", "Beatrice",
-      "Dolores", "Bernice", "Audrey", "Yvonne", "Annette", "June", "Samantha",
-      "Marion", "Dana", "Stacy", "Ana", "Renee", "Ida", "Vivian", "Roberta",
-      "Holly", "Brittany", "Melanie", "Loretta", "Yolanda", "Jeanette",
-      "Laurie", "Katie", "Kristen", "Vanessa", "Alma", "Sue", "Elsie", "Beth",
-      "Jeanne"};
-  private static final String[] MALE_FIRST_NAMES = {
-      "James", "John", "Robert", "Michael", "William", "David", "Richard",
-      "Charles", "Joseph", "Thomas", "Christopher", "Daniel", "Paul", "Mark",
-      "Donald", "George", "Kenneth", "Steven", "Edward", "Brian", "Ronald",
-      "Anthony", "Kevin", "Jason", "Matthew", "Gary", "Timothy", "Jose",
-      "Larry", "Jeffrey", "Frank", "Scott", "Eric", "Stephen", "Andrew",
-      "Raymond", "Gregory", "Joshua", "Jerry", "Dennis", "Walter", "Patrick",
-      "Peter", "Harold", "Douglas", "Henry", "Carl", "Arthur", "Ryan", "Roger",
-      "Joe", "Juan", "Jack", "Albert", "Jonathan", "Justin", "Terry", "Gerald",
-      "Keith", "Samuel", "Willie", "Ralph", "Lawrence", "Nicholas", "Roy",
-      "Benjamin", "Bruce", "Brandon", "Adam", "Harry", "Fred", "Wayne", "Billy",
-      "Steve", "Louis", "Jeremy", "Aaron", "Randy", "Howard", "Eugene",
-      "Carlos", "Russell", "Bobby", "Victor", "Martin", "Ernest", "Phillip",
-      "Todd", "Jesse", "Craig", "Alan", "Shawn", "Clarence", "Sean", "Philip",
-      "Chris", "Johnny", "Earl", "Jimmy", "Antonio", "Danny", "Bryan", "Tony",
-      "Luis", "Mike", "Stanley", "Leonard", "Nathan", "Dale", "Manuel",
-      "Rodney", "Curtis", "Norman", "Allen", "Marvin", "Vincent", "Glenn",
-      "Jeffery", "Travis", "Jeff", "Chad", "Jacob", "Lee", "Melvin", "Alfred",
-      "Kyle", "Francis", "Bradley", "Jesus", "Herbert", "Frederick", "Ray",
-      "Joel", "Edwin", "Don", "Eddie", "Ricky", "Troy", "Randall", "Barry",
-      "Alexander", "Bernard", "Mario", "Leroy", "Francisco", "Marcus",
-      "Micheal", "Theodore", "Clifford", "Miguel", "Oscar", "Jay", "Jim", "Tom",
-      "Calvin", "Alex", "Jon", "Ronnie", "Bill", "Lloyd", "Tommy", "Leon",
-      "Derek", "Warren", "Darrell", "Jerome", "Floyd", "Leo", "Alvin", "Tim",
-      "Wesley", "Gordon", "Dean", "Greg", "Jorge", "Dustin", "Pedro", "Derrick",
-      "Dan", "Lewis", "Zachary", "Corey", "Herman", "Maurice", "Vernon",
-      "Roberto", "Clyde", "Glen", "Hector", "Shane", "Ricardo", "Sam", "Rick",
-      "Lester", "Brent", "Ramon", "Charlie", "Tyler", "Gilbert", "Gene"};
-  private static final String[] LAST_NAMES = {
-      "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller",
-      "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White",
-      "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson", "Clark",
-      "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young",
-      "Hernandez", "King", "Wright", "Lopez", "Hill", "Scott", "Green", "Adams",
-      "Baker", "Gonzalez", "Nelson", "Carter", "Mitchell", "Perez", "Roberts",
-      "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins",
-      "Stewart", "Sanchez", "Morris", "Rogers", "Reed", "Cook", "Morgan",
-      "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox",
-      "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James",
-      "Watson", "Brooks", "Kelly", "Sanders", "Price", "Bennett", "Wood",
-      "Barnes", "Ross", "Henderson", "Coleman", "Jenkins", "Perry", "Powell",
-      "Long", "Patterson", "Hughes", "Flores", "Washington", "Butler",
-      "Simmons", "Foster", "Gonzales", "Bryant", "Alexander", "Russell",
-      "Griffin", "Diaz", "Hayes", "Myers", "Ford", "Hamilton", "Graham",
-      "Sullivan", "Wallace", "Woods", "Cole", "West", "Jordan", "Owens",
-      "Reynolds", "Fisher", "Ellis", "Harrison", "Gibson", "Mcdonald", "Cruz",
-      "Marshall", "Ortiz", "Gomez", "Murray", "Freeman", "Wells", "Webb",
-      "Simpson", "Stevens", "Tucker", "Porter", "Hunter", "Hicks", "Crawford",
-      "Henry", "Boyd", "Mason", "Morales", "Kennedy", "Warren", "Dixon",
-      "Ramos", "Reyes", "Burns", "Gordon", "Shaw", "Holmes", "Rice",
-      "Robertson", "Hunt", "Black", "Daniels", "Palmer", "Mills", "Nichols",
-      "Grant", "Knight", "Ferguson", "Rose", "Stone", "Hawkins", "Dunn",
-      "Perkins", "Hudson", "Spencer", "Gardner", "Stephens", "Payne", "Pierce",
-      "Berry", "Matthews", "Arnold", "Wagner", "Willis", "Ray", "Watkins",
-      "Olson", "Carroll", "Duncan", "Snyder", "Hart", "Cunningham", "Bradley",
-      "Lane", "Andrews", "Ruiz", "Harper", "Fox", "Riley", "Armstrong",
-      "Carpenter", "Weaver", "Greene", "Lawrence", "Elliott", "Chavez", "Sims",
-      "Austin", "Peters", "Kelley", "Franklin", "Lawson"};
-  private static final String[] STREET_NAMES = {
-      "Peachtree", "First", "Second", "Third", "Fourth", "Fifth", "Sixth",
-      "Tenth", "Fourteenth", "Spring", "Techwood", "West Peachtree", "Juniper",
-      "Cypress", "Fowler", "Piedmont", "Juniper", "Main", "Central", "Currier",
-      "Courtland", "Williams", "Centennial", "Olympic", "Baker", "Highland",
-      "Pryor", "Decatur", "Bell", "Edgewood", "Mitchell", "Forsyth", "Capital"};
-  private static final String[] STREET_SUFFIX = {
-      "St", "Rd", "Ln", "Blvd", "Way", "Pkwy", "Cir", "Ave"};
+  private static final String[] FEMALE_FIRST_NAMES = { "Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer",
+      "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen", "Sandra", "Donna", "Carol",
+      "Ruth", "Sharon", "Michelle", "Laura", "Sarah", "Kimberly", "Deborah", "Jessica", "Shirley", "Cynthia", "Angela",
+      "Melissa", "Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda",
+      "Stephanie", "Carolyn", "Christine", "Marie", "Janet", "Catherine", "Frances", "Ann", "Joyce", "Diane", "Alice",
+      "Julie", "Heather", "Teresa", "Doris", "Gloria", "Evelyn", "Jean", "Cheryl", "Mildred", "Katherine", "Joan",
+      "Ashley", "Judith", "Rose", "Janice", "Kelly", "Nicole", "Judy", "Christina", "Kathy", "Theresa", "Beverly",
+      "Denise", "Tammy", "Irene", "Jane", "Lori", "Rachel", "Marilyn", "Andrea", "Kathryn", "Louise", "Sara", "Anne",
+      "Jacqueline", "Wanda", "Bonnie", "Julia", "Ruby", "Lois", "Tina", "Phyllis", "Norma", "Paula", "Diana", "Annie",
+      "Lillian", "Emily", "Robin", "Peggy", "Crystal", "Gladys", "Rita", "Dawn", "Connie", "Florence", "Tracy", "Edna",
+      "Tiffany", "Carmen", "Rosa", "Cindy", "Grace", "Wendy", "Victoria", "Edith", "Kim", "Sherry", "Sylvia",
+      "Josephine", "Thelma", "Shannon", "Sheila", "Ethel", "Ellen", "Elaine", "Marjorie", "Carrie", "Charlotte",
+      "Monica", "Esther", "Pauline", "Emma", "Juanita", "Anita", "Rhonda", "Hazel", "Amber", "Eva", "Debbie", "April",
+      "Leslie", "Clara", "Lucille", "Jamie", "Joanne", "Eleanor", "Valerie", "Danielle", "Megan", "Alicia", "Suzanne",
+      "Michele", "Gail", "Bertha", "Darlene", "Veronica", "Jill", "Erin", "Geraldine", "Lauren", "Cathy", "Joann",
+      "Lorraine", "Lynn", "Sally", "Regina", "Erica", "Beatrice", "Dolores", "Bernice", "Audrey", "Yvonne", "Annette",
+      "June", "Samantha", "Marion", "Dana", "Stacy", "Ana", "Renee", "Ida", "Vivian", "Roberta", "Holly", "Brittany",
+      "Melanie", "Loretta", "Yolanda", "Jeanette", "Laurie", "Katie", "Kristen", "Vanessa", "Alma", "Sue", "Elsie",
+      "Beth", "Jeanne" };
+  private static final String[] MALE_FIRST_NAMES = { "James", "John", "Robert", "Michael", "William", "David",
+      "Richard", "Charles", "Joseph", "Thomas", "Christopher", "Daniel", "Paul", "Mark", "Donald", "George", "Kenneth",
+      "Steven", "Edward", "Brian", "Ronald", "Anthony", "Kevin", "Jason", "Matthew", "Gary", "Timothy", "Jose",
+      "Larry", "Jeffrey", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry",
+      "Dennis", "Walter", "Patrick", "Peter", "Harold", "Douglas", "Henry", "Carl", "Arthur", "Ryan", "Roger", "Joe",
+      "Juan", "Jack", "Albert", "Jonathan", "Justin", "Terry", "Gerald", "Keith", "Samuel", "Willie", "Ralph",
+      "Lawrence", "Nicholas", "Roy", "Benjamin", "Bruce", "Brandon", "Adam", "Harry", "Fred", "Wayne", "Billy",
+      "Steve", "Louis", "Jeremy", "Aaron", "Randy", "Howard", "Eugene", "Carlos", "Russell", "Bobby", "Victor",
+      "Martin", "Ernest", "Phillip", "Todd", "Jesse", "Craig", "Alan", "Shawn", "Clarence", "Sean", "Philip", "Chris",
+      "Johnny", "Earl", "Jimmy", "Antonio", "Danny", "Bryan", "Tony", "Luis", "Mike", "Stanley", "Leonard", "Nathan",
+      "Dale", "Manuel", "Rodney", "Curtis", "Norman", "Allen", "Marvin", "Vincent", "Glenn", "Jeffery", "Travis",
+      "Jeff", "Chad", "Jacob", "Lee", "Melvin", "Alfred", "Kyle", "Francis", "Bradley", "Jesus", "Herbert",
+      "Frederick", "Ray", "Joel", "Edwin", "Don", "Eddie", "Ricky", "Troy", "Randall", "Barry", "Alexander", "Bernard",
+      "Mario", "Leroy", "Francisco", "Marcus", "Micheal", "Theodore", "Clifford", "Miguel", "Oscar", "Jay", "Jim",
+      "Tom", "Calvin", "Alex", "Jon", "Ronnie", "Bill", "Lloyd", "Tommy", "Leon", "Derek", "Warren", "Darrell",
+      "Jerome", "Floyd", "Leo", "Alvin", "Tim", "Wesley", "Gordon", "Dean", "Greg", "Jorge", "Dustin", "Pedro",
+      "Derrick", "Dan", "Lewis", "Zachary", "Corey", "Herman", "Maurice", "Vernon", "Roberto", "Clyde", "Glen",
+      "Hector", "Shane", "Ricardo", "Sam", "Rick", "Lester", "Brent", "Ramon", "Charlie", "Tyler", "Gilbert", "Gene" };
+  private static final String[] LAST_NAMES = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller",
+      "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia",
+      "Martinez", "Robinson", "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young", "Hernandez",
+      "King", "Wright", "Lopez", "Hill", "Scott", "Green", "Adams", "Baker", "Gonzalez", "Nelson", "Carter",
+      "Mitchell", "Perez", "Roberts", "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins",
+      "Stewart", "Sanchez", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera",
+      "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson",
+      "Brooks", "Kelly", "Sanders", "Price", "Bennett", "Wood", "Barnes", "Ross", "Henderson", "Coleman", "Jenkins",
+      "Perry", "Powell", "Long", "Patterson", "Hughes", "Flores", "Washington", "Butler", "Simmons", "Foster",
+      "Gonzales", "Bryant", "Alexander", "Russell", "Griffin", "Diaz", "Hayes", "Myers", "Ford", "Hamilton", "Graham",
+      "Sullivan", "Wallace", "Woods", "Cole", "West", "Jordan", "Owens", "Reynolds", "Fisher", "Ellis", "Harrison",
+      "Gibson", "Mcdonald", "Cruz", "Marshall", "Ortiz", "Gomez", "Murray", "Freeman", "Wells", "Webb", "Simpson",
+      "Stevens", "Tucker", "Porter", "Hunter", "Hicks", "Crawford", "Henry", "Boyd", "Mason", "Morales", "Kennedy",
+      "Warren", "Dixon", "Ramos", "Reyes", "Burns", "Gordon", "Shaw", "Holmes", "Rice", "Robertson", "Hunt", "Black",
+      "Daniels", "Palmer", "Mills", "Nichols", "Grant", "Knight", "Ferguson", "Rose", "Stone", "Hawkins", "Dunn",
+      "Perkins", "Hudson", "Spencer", "Gardner", "Stephens", "Payne", "Pierce", "Berry", "Matthews", "Arnold",
+      "Wagner", "Willis", "Ray", "Watkins", "Olson", "Carroll", "Duncan", "Snyder", "Hart", "Cunningham", "Bradley",
+      "Lane", "Andrews", "Ruiz", "Harper", "Fox", "Riley", "Armstrong", "Carpenter", "Weaver", "Greene", "Lawrence",
+      "Elliott", "Chavez", "Sims", "Austin", "Peters", "Kelley", "Franklin", "Lawson" };
+  private static final String[] STREET_NAMES = { "Peachtree", "First", "Second", "Third", "Fourth", "Fifth", "Sixth",
+      "Tenth", "Fourteenth", "Spring", "Techwood", "West Peachtree", "Juniper", "Cypress", "Fowler", "Piedmont",
+      "Juniper", "Main", "Central", "Currier", "Courtland", "Williams", "Centennial", "Olympic", "Baker", "Highland",
+      "Pryor", "Decatur", "Bell", "Edgewood", "Mitchell", "Forsyth", "Capital" };
+  private static final String[] STREET_SUFFIX = { "St", "Rd", "Ln", "Blvd", "Way", "Pkwy", "Cir", "Ave" };
 
   /**
    * The singleton instance of the database.
@@ -278,7 +243,7 @@ public class ContactDatabase {
 
   /**
    * Get the singleton instance of the contact database.
-   *
+   * 
    * @return the singleton instance
    */
   public static ContactDatabase get() {
@@ -291,8 +256,7 @@ public class ContactDatabase {
   /**
    * The provider that holds the list of contacts in the database.
    */
-  private ListDataProvider<ContactInfo> dataProvider = new ListDataProvider<
-      ContactInfo>();
+  private ListDataProvider<ContactInfo> dataProvider = new ListDataProvider<ContactInfo>();
 
   private final Category[] categories;
 
@@ -304,15 +268,16 @@ public class ContactDatabase {
     categories[0] = new Category("Friends");
     categories[1] = new Category("Work");
     categories[2] = new Category("Family");
-    
-   // Generate initial data.
-    generateContacts(250);
+
+    // Generate initial data.
+    generateContacts(5000);
   }
 
   /**
    * Add a new contact.
-   *
-   * @param contact the contact to add.
+   * 
+   * @param contact
+   *          the contact to add.
    */
   public void addContact(ContactInfo contact) {
     List<ContactInfo> contacts = dataProvider.getList();
@@ -324,8 +289,9 @@ public class ContactDatabase {
   /**
    * Add a display to the database. The current range of interest of the display
    * will be populated with data.
-   *
-   * @param display a {@Link HasData}.
+   * 
+   * @param display
+   *          a {@Link HasData}.
    */
   public void addDataDisplay(HasData<ContactInfo> display) {
     dataProvider.addDataDisplay(display);
@@ -334,8 +300,9 @@ public class ContactDatabase {
   /**
    * Generate the specified number of contacts and add them to the data
    * provider.
-   *
-   * @param count the number of contacts to generate.
+   * 
+   * @param count
+   *          the number of contacts to generate.
    */
   public void generateContacts(int count) {
     List<ContactInfo> contacts = dataProvider.getList();
@@ -346,7 +313,7 @@ public class ContactDatabase {
 
   /**
    * Get the categories in the database.
-   *
+   * 
    * @return the categories in the database
    */
   public Category[] queryCategories() {
@@ -355,8 +322,9 @@ public class ContactDatabase {
 
   /**
    * Query all contacts for the specified category.
-   *
-   * @param category the category
+   * 
+   * @param category
+   *          the category
    * @return the list of contacts in the category
    */
   public List<ContactInfo> queryContactsByCategory(Category category) {
@@ -372,17 +340,17 @@ public class ContactDatabase {
   /**
    * Query all contacts for the specified category that begin with the specified
    * first name prefix.
-   *
-   * @param category the category
-   * @param firstNamePrefix the prefix of the first name
+   * 
+   * @param category
+   *          the category
+   * @param firstNamePrefix
+   *          the prefix of the first name
    * @return the list of contacts in the category
    */
-  public List<ContactInfo> queryContactsByCategoryAndFirstName(
-      Category category, String firstNamePrefix) {
+  public List<ContactInfo> queryContactsByCategoryAndFirstName(Category category, String firstNamePrefix) {
     List<ContactInfo> matches = new ArrayList<ContactInfo>();
     for (ContactInfo contact : dataProvider.getList()) {
-      if (contact.getCategory() == category
-          && contact.getFirstName().startsWith(firstNamePrefix)) {
+      if (contact.getCategory() == category && contact.getFirstName().startsWith(firstNamePrefix)) {
         matches.add(contact);
       }
     }
@@ -398,7 +366,7 @@ public class ContactDatabase {
 
   /**
    * Create a new random {@link ContactInfo}.
-   *
+   * 
    * @return the new {@link ContactInfo}.
    */
   @SuppressWarnings("deprecation")
@@ -415,8 +383,7 @@ public class ContactDatabase {
 
     // Create a birthday between 20-80 years ago.
     int year = (new Date()).getYear() - 21 - Random.nextInt(61);
-    contact.setBirthday(
-        new Date(year, Random.nextInt(12), 1 + Random.nextInt(31)));
+    contact.setBirthday(new Date(year, Random.nextInt(12), 1 + Random.nextInt(31)));
 
     // Create an address.
     int addrNum = 1 + Random.nextInt(999);
@@ -428,8 +395,9 @@ public class ContactDatabase {
 
   /**
    * Get the next random value from an array.
-   *
-   * @param array the array
+   * 
+   * @param array
+   *          the array
    * @return a random value in the array
    */
   private <T> T nextValue(T[] array) {

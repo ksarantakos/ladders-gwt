@@ -9,18 +9,17 @@ import com.theladders.gwt.client.ui.BrowseJobsView;
 import com.theladders.gwt.client.ui.HomeView;
 
 public class HomeActivity extends AbstractActivity implements HomeView.Presenter {
-  // Used to obtain views, eventBus, placeController
-  // Alternatively, could be injected via GIN
+  /*
+   * Used to obtain views, eventBus, placeController, Alternatively, could be
+   * injected via GIN.
+   */
   private ClientFactory clientFactory;
-  // Name that will be appended to "Hello,"
-  private String name;
 
   public interface HelloListener {
     void goTo(Place place);
   }
 
-  public HomeActivity(HomePlace place, ClientFactory clientFactory) {
-    this.name = place.getHelloName();
+  public HomeActivity(ClientFactory clientFactory) {
     this.clientFactory = clientFactory;
   }
 
@@ -29,7 +28,7 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
     // Set Browse Jobs to default Widget
     BrowseJobsView browseJobs = clientFactory.getBrowseJobsView();
     containerWidget.setWidget(browseJobs.asWidget());
-    
+
     clientFactory.getHomeView().setPresenter(this);
   }
 

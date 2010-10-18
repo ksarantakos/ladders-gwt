@@ -6,7 +6,7 @@ public class Job {
   private String title;
   private String company;
   private String location;
-  private Distance distance;
+  private String distance;
   private Date postDate;
   private String description;
 
@@ -34,11 +34,11 @@ public class Job {
     this.location = location;
   }
 
-  public Distance getDistance() {
+  public String getDistance() {
     return distance;
   }
 
-  public void setDistance(Distance distance) {
+  public void setDistance(String distance) {
     this.distance = distance;
   }
 

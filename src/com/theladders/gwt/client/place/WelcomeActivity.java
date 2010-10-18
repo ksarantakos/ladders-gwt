@@ -13,7 +13,6 @@ public class WelcomeActivity extends AbstractActivity implements WelcomeView.Pre
   public WelcomeActivity(ClientFactory clientFactory) {
     this.clientFactory = clientFactory;
   }
-  
 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {

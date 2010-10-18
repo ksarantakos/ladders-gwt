@@ -13,10 +13,13 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AboutDialog extends DialogBox {
-  interface Binder extends UiBinder<Widget, AboutDialog> { }
+  interface Binder extends UiBinder<Widget, AboutDialog> {
+  }
+
   private static final Binder binder = GWT.create(Binder.class);
 
-  @UiField Button closeButton;
+  @UiField
+  Button closeButton;
 
   public AboutDialog() {
     // Use this opportunity to set the dialog's caption.
@@ -33,10 +36,10 @@ public class AboutDialog extends DialogBox {
       // Use the popup's key preview hooks to close the dialog when either
       // enter or escape is pressed.
       switch (evt.getKeyCode()) {
-        case KeyCodes.KEY_ENTER:
-        case KeyCodes.KEY_ESCAPE:
-          hide();
-          break;
+      case KeyCodes.KEY_ENTER:
+      case KeyCodes.KEY_ESCAPE:
+        hide();
+        break;
       }
     }
   }

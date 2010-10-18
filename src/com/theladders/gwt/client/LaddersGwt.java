@@ -9,7 +9,6 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.theladders.gwt.client.place.AppActivityMapper;
 import com.theladders.gwt.client.place.AppPlaceHistoryMapper;
 import com.theladders.gwt.client.place.HomePlace;
@@ -20,7 +19,6 @@ import com.theladders.gwt.client.ui.HomeView;
  */
 public class LaddersGwt implements EntryPoint {
   private Place defaultPlace = new HomePlace("World!");
-  private SimplePanel appWidget = new SimplePanel();
 
   /**
    * This is the entry point method.
@@ -33,7 +31,7 @@ public class LaddersGwt implements EntryPoint {
     EventBus eventBus = clientFactory.getEventBus();
     PlaceController placeController = clientFactory.getPlaceController();
     HomeView homeView = clientFactory.getHomeView();
-    
+
     // Start ActivityManager for the main widget with our ActivityMapper
     ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
     ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);

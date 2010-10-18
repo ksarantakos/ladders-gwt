@@ -1,28 +1,35 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui"
-    xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+    xmlns:c="urn:import:com.google.gwt.user.cellview.client" xmlns:l="urn:import:com.theladders.gwt.client.ui.pager">
 
     <ui:style>
         .cellTable {
         	height: 400px;
-        	width: 600px;
+        	width: 715px;
+        	position: relative;
         	border: 2px solid #ccc;
         	text-align: left;
+        }
+        
+        .grid_4_3Column {
+        	float: left;
+        	width: 715px;
+        }
+        
+        .resultRowHeaderContainer {
+        	float: left;
+        	width: 715px;
         }
     </ui:style>
 
     <g:HTMLPanel>
-        <table>
-            <tr>
-                <td valign='top'>
-                    <c:CellTable addStyleNames='{style.cellTable}' pageSize='15' ui:field='cellTable' />
-                </td>
-            </tr>
-            <tr>
-                <td align='center'>
-                    <c:SimplePager ui:field='pager' />
-                </td>
-            </tr>
-        </table>
+        <div class="{style.grid_4_3Column}">
+
+            <l:JobPager ui:field='pager' />
+
+            <div class="{style.resultRowHeaderContainer}">
+                <c:CellTable addStyleNames='{style.cellTable}' pageSize='20' ui:field='cellTable' />
+            </div>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>
