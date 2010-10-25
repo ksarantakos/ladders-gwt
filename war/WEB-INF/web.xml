@@ -4,10 +4,23 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-  
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>laddersgwt.html</welcome-file>
-  </welcome-file-list>
+    <servlet>
+        <servlet-name>RestletServlet</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <param-name>org.restlet.application</param-name>
+            <param-value>com.theladders.gae.rest.FirstStepsApplication</param-value>
+        </init-param>
+    </servlet>
 
+    <!-- Catch all requests -->
+    <servlet-mapping>
+        <servlet-name>RestletServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>laddersgwt.html</welcome-file>
+    </welcome-file-list>
 </web-app>

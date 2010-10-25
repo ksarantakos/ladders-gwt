@@ -15,7 +15,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.SimplePager;
-import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.MultiSelectionModel;
@@ -24,6 +23,7 @@ import com.theladders.gwt.client.content.ContactDatabase;
 import com.theladders.gwt.client.content.ContactDatabase.Category;
 import com.theladders.gwt.client.content.ContactDatabase.ContactInfo;
 import com.theladders.gwt.client.ui.pager.JobPager;
+import com.theladders.gwt.client.ui.pager.JobTable;
 import com.theladders.gwt.client.ui.pager.PagerResources;
 
 public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
@@ -53,6 +53,8 @@ public class BrowseJobsViewImpl extends Composite implements BrowseJobsView {
     // Create a CellTable.
     cellTable = new CellTable<ContactInfo>(ContactDatabase.ContactInfo.KEY_PROVIDER);
 
+
+    
     // Create a Pager to control the table.
     SimplePager.Resources pagerResources = GWT.create(PagerResources.class);
 //    pager = new SimplePager(TextLocation.RIGHT, pagerResources, false, 0, false);

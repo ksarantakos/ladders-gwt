@@ -1,11 +1,17 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
-    ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator" ui:generateLocales="default"
-    xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:l="urn:import:com.theladders.gwt.client.ui">
+    ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator" ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:l="urn:import:com.theladders.gwt.client.ui">
 
     <ui:image field="backImage" src="BackwardArrow.gif" />
     <ui:image field="forwardImage" src="ForwardArrow.gif" />
     <ui:style>
+        .primaryLink,a,a:visited,a:link {
+        	color: #2370A9;
+        	font-size: 13px;
+        	text-decoration: none;
+        }
+        
         .headlinePrimary {
         	color: #6A6D6F;
         	font-size: 18px;
@@ -70,6 +76,22 @@
         	text-indent: -3000px;
         }
         
+        .currentPageHighLightOff {
+        	text-decoration: underline !important;
+        }
+        
+        a:active {
+        	color: #282C33 !important;
+        	font-weight: bold;
+        	text-decoration: none;
+        }
+        
+        .currentPageHighLightOn {
+        	color: #282C33 !important;
+        	font-weight: bold;
+        	text-decoration: none;
+        }
+        
         @sprite .backImage {
         	gwt-image: "backImage";
         	width: 13px;
@@ -89,33 +111,36 @@
         <div class="{style.paginationRow}">
             <div class="{style.totalResultsCont}">
                 <span class="{style.headlinePrimary}">Job Results</span>
-                <span class="{style.paginationCount}" ui:field="totalResults" />     
+                <span class="{style.paginationCount}">
+                    <ui:msg>
+                        (<span ui:field="pageStart"/>-<span ui:field="endIndex"/> of <span ui:field="dataSize"/> in XXX locations)
+                    </ui:msg>
+                </span>
             </div>
             <div class="{style.matchingRecruiter}">
-                View Matching Recruiters
+                <a>View Matching Recruiters</a>
              </div>
             <div class="{style.paginationWrapperFloat}">
                 <div class="{style.jobsPerPageCont}">
                     <span class="{style.generalLabel}">Jobs Per Page</span>
-                    <select id="jobsPerPageSelect">
-                        <option value="10">10</option>
-                        <option value="20" selected="selected">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
+                    <g:ListBox ui:field="pageSize">
+                        <g:item value="10">10</g:item>
+                        <g:item value="20">20</g:item>
+                        <g:item value="50">50</g:item>
+                        <g:item value="100">100</g:item>
+                        <g:item value="1000">1000</g:item>
+                    </g:ListBox>
                 </div>
                 <div class="{style.paginationContTop}">
-                    <g:Anchor styleName="{style.paginationLinks} {style.backImage}" ui:field="paginationBack"
-                        href='javascript:;' />
+                    <g:Anchor styleName="{style.paginationLinks} {style.backImage}" ui:field="paginationBack" href='javascript:;' />
                     <div class="{style.paginationLinksList}">
-                        <a onclick="goToPage(1);" class="{style.paginationLink}" href="javascript:void(0);">1</a>
-                        <a onclick="goToPage(2);" class="{style.paginationLink}" href="javascript:void(0);">2</a>
-                        <a onclick="goToPage(3);" class="{style.paginationLink}" href="javascript:void(0);">3</a>
-                        <a onclick="goToPage(4);" class="{style.paginationLink}" href="javascript:void(0);">4</a>
-                        <a onclick="goToPage(5);" class="{style.paginationLink}" href="javascript:void(0);">5</a>
+                        <g:Anchor styleName="{style.paginationLink} {style.currentPageHighLightOff}" ui:field="fastIndex1" href='javascript:;'>1</g:Anchor>
+                        <g:Anchor styleName="{style.paginationLink} {style.currentPageHighLightOff}" ui:field="fastIndex2" href='javascript:;'>2</g:Anchor>
+                        <g:Anchor styleName="{style.paginationLink} {style.currentPageHighLightOff}" ui:field="fastIndex3" href='javascript:;'>3</g:Anchor>
+                        <g:Anchor styleName="{style.paginationLink} {style.currentPageHighLightOff}" ui:field="fastIndex4" href='javascript:;'>4</g:Anchor>
+                        <g:Anchor styleName="{style.paginationLink} {style.currentPageHighLightOff}" ui:field="fastIndex5" href='javascript:;'>5</g:Anchor>
                     </div>
-                    <g:Anchor styleName="{style.paginationLinks} {style.forwardImage}" ui:field="paginationForward"
-                        href='javascript:;' />
+                    <g:Anchor styleName="{style.paginationLinks} {style.forwardImage}" ui:field="paginationForward" href='javascript:;' />
                 </div>
             </div>
         </div>
