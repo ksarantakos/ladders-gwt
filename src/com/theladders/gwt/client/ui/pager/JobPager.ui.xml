@@ -5,7 +5,7 @@
 
     <ui:image field="backImage" src="BackwardArrow.gif" />
     <ui:image field="forwardImage" src="ForwardArrow.gif" />
-    <ui:style>
+    <ui:style type="com.theladders.gwt.client.ui.pager.JobPager.PagerStyle">
         .primaryLink,a,a:visited,a:link {
         	color: #2370A9;
         	font-size: 13px;
@@ -76,17 +76,7 @@
         	text-indent: -3000px;
         }
         
-        .currentPageHighLightOff {
-        	text-decoration: underline !important;
-        }
-        
         a:active {
-        	color: #282C33 !important;
-        	font-weight: bold;
-        	text-decoration: none;
-        }
-        
-        .currentPageHighLightOn {
         	color: #282C33 !important;
         	font-weight: bold;
         	text-decoration: none;
@@ -103,7 +93,18 @@
         	width: 13px;
         	height: 13px;
         }
+        
+        .currentPageHighLightOff {
+        	text-decoration: underline !important;
+        }
+        
+        .currentPageHighLightOn {
+        	color: #282C33 !important;
+        	font-weight: bold;
+        	text-decoration: none;
+        }
     </ui:style>
+
 
     <ui:with field='res' type='com.theladders.gwt.client.ui.pager.PagerResources' />
 
@@ -113,13 +114,19 @@
                 <span class="{style.headlinePrimary}">Job Results</span>
                 <span class="{style.paginationCount}">
                     <ui:msg>
-                        (<span ui:field="pageStart"/>-<span ui:field="endIndex"/> of <span ui:field="dataSize"/> in XXX locations)
+                        (
+                        <span ui:field="pageStart" />
+                        -
+                        <span ui:field="endIndex" />
+                        of
+                        <span ui:field="dataSize" />
+                        in XXX locations)
                     </ui:msg>
                 </span>
             </div>
             <div class="{style.matchingRecruiter}">
                 <a>View Matching Recruiters</a>
-             </div>
+            </div>
             <div class="{style.paginationWrapperFloat}">
                 <div class="{style.jobsPerPageCont}">
                     <span class="{style.generalLabel}">Jobs Per Page</span>

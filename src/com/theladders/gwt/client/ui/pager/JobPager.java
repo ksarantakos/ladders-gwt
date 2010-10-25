@@ -1,10 +1,13 @@
 package com.theladders.gwt.client.ui.pager;
 
+import java.util.HashSet;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -18,6 +21,15 @@ import com.google.gwt.view.client.Range;
 public class JobPager extends AbstractPager {
   interface Binder extends UiBinder<Widget, JobPager> {
   }
+
+  interface PagerStyle extends CssResource {
+    String currentPageHighLightOff();
+
+    String currentPageHighLightOn();
+  }
+
+  @UiField
+  PagerStyle style;
 
   @UiField
   SpanElement pageStart;
@@ -46,11 +58,18 @@ public class JobPager extends AbstractPager {
   @UiField
   Anchor paginationForward;
 
+  HashSet<Anchor> anchors = new HashSet<Anchor>();
+
   private static Binder binder = GWT.create(Binder.class);
 
   public JobPager() {
     initWidget(binder.createAndBindUi(this));
     pageSize.setItemSelected(1, true);
+    anchors.add(fastIndex1);
+    anchors.add(fastIndex2);
+    anchors.add(fastIndex3);
+    anchors.add(fastIndex4);
+    anchors.add(fastIndex5);
   }
 
   @UiHandler("pageSize")
@@ -68,6 +87,30 @@ public class JobPager extends AbstractPager {
     nextPage();
   }
 
+  @UiHandler({ "fastIndex1", "fastIndex2", "fastIndex3", "fastIndex4", "fastIndex5" })
+  void handleFastIndex2(ClickEvent e) {
+    Anchor a = (Anchor) e.getSource();
+    int page = Integer.parseInt(a.getText());
+    gotoPage(page, a);
+  }
+
+  private void gotoPage(int page, Anchor a) {
+    setPage(page);
+    clearAnchorStyles();
+    setSelected(a);
+  }
+
+  private void setSelected(Anchor a) {
+    a.addStyleName(style.currentPageHighLightOn());
+  }
+
+  private void clearAnchorStyles() {
+    for (Anchor a : anchors) {
+      a.removeStyleName(style.currentPageHighLightOn());
+      a.removeStyleName(style.currentPageHighLightOff());
+    }
+  }
+
   @Override
   protected void onRangeOrRowCountChanged() {
     createText();
@@ -75,8 +118,7 @@ public class JobPager extends AbstractPager {
   }
 
   private void resetQuickPageAnchors() {
-    // TODO Auto-generated method stub
-    
+
   }
 
   protected void createText() {
