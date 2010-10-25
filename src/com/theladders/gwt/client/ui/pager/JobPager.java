@@ -1,6 +1,6 @@
 package com.theladders.gwt.client.ui.pager;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;
@@ -44,6 +44,7 @@ public class JobPager extends AbstractPager {
   @UiField
   Anchor paginationBack;
 
+  // I'd love to know a better way than this
   @UiField
   Anchor fastIndex1;
   @UiField
@@ -58,18 +59,22 @@ public class JobPager extends AbstractPager {
   @UiField
   Anchor paginationForward;
 
-  HashSet<Anchor> anchors = new HashSet<Anchor>();
+  ArrayList<Anchor> anchors = new ArrayList<Anchor>(5);
 
   private static Binder binder = GWT.create(Binder.class);
 
   public JobPager() {
     initWidget(binder.createAndBindUi(this));
     pageSize.setItemSelected(1, true);
+
+    // Careful! Order Matters here!
     anchors.add(fastIndex1);
     anchors.add(fastIndex2);
     anchors.add(fastIndex3);
     anchors.add(fastIndex4);
     anchors.add(fastIndex5);
+
+    resetAnchorStyles();
   }
 
   @UiHandler("pageSize")
@@ -88,26 +93,19 @@ public class JobPager extends AbstractPager {
   }
 
   @UiHandler({ "fastIndex1", "fastIndex2", "fastIndex3", "fastIndex4", "fastIndex5" })
-  void handleFastIndex2(ClickEvent e) {
+  void handleFastIndexes(ClickEvent e) {
     Anchor a = (Anchor) e.getSource();
     int page = Integer.parseInt(a.getText());
-    gotoPage(page, a);
-  }
-
-  private void gotoPage(int page, Anchor a) {
     setPage(page);
-    clearAnchorStyles();
-    setSelected(a);
   }
 
-  private void setSelected(Anchor a) {
-    a.addStyleName(style.currentPageHighLightOn());
-  }
-
-  private void clearAnchorStyles() {
+  private void resetAnchorStyles() {
     for (Anchor a : anchors) {
       a.removeStyleName(style.currentPageHighLightOn());
       a.removeStyleName(style.currentPageHighLightOff());
+      if (a.getText().equals(Integer.toString(getPage()))) {
+        a.addStyleName(style.currentPageHighLightOn());
+      }
     }
   }
 
@@ -115,10 +113,19 @@ public class JobPager extends AbstractPager {
   protected void onRangeOrRowCountChanged() {
     createText();
     resetQuickPageAnchors();
+    resetAnchorStyles();
   }
 
   private void resetQuickPageAnchors() {
+    if (getPage() >= 3 && getPage() < getPageCount() - 2) {
+      resetAnchors(getPage() - 2);
+    }
+  }
 
+  private void resetAnchors(int pageStart) {
+    for (Anchor a : anchors) {
+      a.setText(Integer.toString(pageStart++));
+    }
   }
 
   protected void createText() {
